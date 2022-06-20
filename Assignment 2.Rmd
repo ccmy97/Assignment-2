@@ -2,12 +2,16 @@
 title: "Assignment 2"
 author: "Clement Cheah"
 date: '2022-06-14'
-output: html_document
+output:
+  pdf_document: default
+  html_document: default
 ---
 
 ```{r setup, include=FALSE}
 knitr::opts_chunk$set(echo = TRUE)
 ```
+
+
 
 #Description of the data (Section 1)
 
@@ -16,6 +20,7 @@ The data that I would be using today talks about the most common unisex names us
 It is unsure on how the data was collected but it was partially derived from the SSA.The data set that was extracted was in a ".csv" file format. It is a flat file as it stores data in plain text format. It is also a fixed width file because each column is in integerial form except for column names. The dataset does not have a delimiter.
 ```{r}
 library(rmarkdown)
+library(dplyr)
 ```
 
 #Reading the data into R (Section 2)
@@ -91,8 +96,13 @@ I wanted to check if there are any missing values.I used function colsums to see
 colSums(is.na(unisexdata))
 ```
 
-Here is the summary statistics.
+I wanted to pick three columns to use summary function
 ```{r}
-summary(unisexdata)
-End_Result <- summary(unisexdata)
+data_pick3 <- select(unisexdata,'total','Male %','Female %')
 ```
+
+```{r,include=TRUE}
+Summarytable<-summary(unisexdata)
+print(Summarytable)
+```
+
